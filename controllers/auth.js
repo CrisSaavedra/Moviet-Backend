@@ -13,7 +13,7 @@ const createUser = async(req, res = response ) => {
         if ( user ) {
             return res.status(400).json({
                 ok: false,
-                msg: 'The user exist'
+                msg: 'The mail exist'
             });
         }
 
@@ -74,11 +74,12 @@ const loginUser = async(req, res = response ) => {
 
         // // Generate JWT
         // const token = await generarJWT( user.id, user.name );
-
+    
         res.json({
             ok: true,
+            username: user.username,
             uid: user.id,
-            name: user.name,
+            idMovies: user.idMovies
             // token
         })
 

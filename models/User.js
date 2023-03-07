@@ -1,5 +1,7 @@
 const { Schema, model } = require('mongoose');
 
+
+
 const UserSchema = Schema({
     username: {
         type: String,
@@ -13,7 +15,8 @@ const UserSchema = Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    idMovies: [String]
 });
 
 
