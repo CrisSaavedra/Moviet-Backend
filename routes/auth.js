@@ -1,11 +1,22 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validateField } = require('../middlewares/validateField');
-const { createUser, loginUser } = require('../controllers/auth');
+const { createUser, loginUser, reLoadUser } = require('../controllers/auth');
 
 
 const router = Router();
 
+
+
+
+router.post('/',
+    [
+        check('email', 'The email is required').isEmail(),
+        check('password','The password is required').isLength({min: 6}),
+        validateField
+    ],
+    loginUser
+);
 
 router.post('/new',
     [
@@ -17,13 +28,13 @@ router.post('/new',
     createUser
 );
 
-router.post('/',
+
+router.post('/reload',
     [
-        check('email', 'The email is required').isEmail(),
-        check('password','The password is required').isLength({min: 6}),
+        check('_id', 'The uid is required').not().isEmpty(),
         validateField
     ],
-    loginUser
+    reLoadUser
 );
 
 

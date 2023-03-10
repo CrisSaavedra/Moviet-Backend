@@ -95,7 +95,44 @@ const loginUser = async(req, res = response ) => {
 }
 
 
+
+const reLoadUser = async(req, res = response ) => {
+
+    const { uid} = req.body;
+
+    try {
+        
+        const user = await User.findOne({ uid });
+
+        if ( !user ) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'User not found'
+            });
+        }
+    
+        res.json({
+            ok: true,
+            username: user.username,
+            uid: user.id,
+            idMovies: user.idMovies
+            
+        })
+
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Please talk with admin'
+        });
+    }
+
+}
+
+
 module.exports = {
     createUser,
-    loginUser
+    loginUser,
+    reLoadUser
 }

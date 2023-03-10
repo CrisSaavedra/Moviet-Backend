@@ -16,9 +16,9 @@ app.use( express.static('public') );
 app.use( express.json() );
 
 
+
 app.use('/api/auth', require('./routes/auth') );
-
-
+app.use('/api/movie', require('./routes/movies'));
 
 
 app.listen( process.env.PORT, () => {

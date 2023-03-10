@@ -16,7 +16,11 @@ const UserSchema = Schema({
         type: String,
         required: true
     },
-    idMovies: [String]
+    idMovies: {
+        type : [String],
+        require: false,
+       
+    }
 });
 
 
